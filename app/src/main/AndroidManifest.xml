@@ -24,6 +24,10 @@
             android:name=".Freinds"
             android:label="@string/title_activity_freinds" >
         </activity>
+        <activity
+            android:name=".Gallery"
+            android:label="@string/title_activity_gallery" >
+        </activity>
     </application>
 
 </manifest>

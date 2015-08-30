@@ -9,4 +9,5 @@
     <string name="event">New Button</string>
     <string name="other">New Button</string>
     <string name="title_activity_freinds">Freinds</string>
+    <string name="title_activity_gallery">Gallery</string>
 </resources>
