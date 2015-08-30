@@ -1,7 +1,7 @@
 package au.com.deangoddard_17822594.assignment_1;
 
 
-//master camerons
+//master cameronsone
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    Button cal = (Button)findViewById(R.id.Calender);
+    //Button cal = (Button)findViewById(R.id.Calender);
 
 
 
