@@ -5,9 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="Cal">Calender</string>
     <string name="title_activity_event">Event</string>
-    <string name="freinds">Freinds</string>
+    <string name="friends">Friends</string>
     <string name="event">New Button</string>
     <string name="other">New Button</string>
-    <string name="title_activity_freinds">Freinds</string>
+    <string name="title_activity_friends">Friends</string>
     <string name="title_activity_gallery">Gallery</string>
+    <string name="addF">Add Friend</string>
 </resources>
