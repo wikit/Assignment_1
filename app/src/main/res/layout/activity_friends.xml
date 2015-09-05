@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/addF"
         android:id="@+id/addF"
-        android:src="vb"
+        android:src="@drawable/ic_add_circle_black_24dp"
         android:contentDescription="@string/min"
         android:layout_alignTop="@+id/editF"
         android:layout_alignParentStart="true"
@@ -25,7 +25,7 @@
         android:id="@+id/editF"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/addF"
-        android:src="@drawable/ic_add_circle_black_24dp"
+        android:src="@drawable/ic_remove_circle_outline_black_24dp"
         android:contentDescription="minus" />
 
 </RelativeLayout>
