@@ -22,7 +22,7 @@ public class Friends extends Activity implements OnClickListener
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_elmain);
         editRollno=(EditText)findViewById(R.id.editRollno);
         editName=(EditText)findViewById(R.id.editName);
         editMarks=(EditText)findViewById(R.id.editMarks);
@@ -127,7 +127,7 @@ public class Friends extends Activity implements OnClickListener
             while(c.moveToNext())
             {
                 buffer.append("Rollno: "+c.getString(0)+"\n");
-                buffer.append("Name: "+c.getString(1)+"\n");
+                buffer.append("Name: " + c.getString(1) + "\n");
                 buffer.append("Marks: "+c.getString(2)+"\n\n");
             }
             showMessage("Student Details", buffer.toString());
