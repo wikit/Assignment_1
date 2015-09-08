@@ -60,16 +60,19 @@ public class Friends extends Activity implements OnClickListener
                     editLName.getText().toString().length()==0||
                     editPhone.getText().toString().length()==0)
             {
-                showMessage("Error", "Please enter all values");
+
+                Toast.makeText(getApplicationContext(), "Missing Details!",
+                        Toast.LENGTH_LONG).show();
+
                 return;
             }
-            db.execSQL("INSERT INTO student VALUES('"+ editFName.getText()+"','"+ editLName.getText()+
-                    "','"+ editPhone.getText()+"');");
+            db.execSQL("INSERT INTO student VALUES('" + editFName.getText() + "','" + editLName.getText() +
+                    "','" + editPhone.getText() + "');");
 
             Toast.makeText(getApplicationContext(), "Friend has been added!",
                     Toast.LENGTH_LONG).show();
 
-           // showMessage("Success", "Record added");
+
             clearText();
         }
         if(view==btnDelete)
@@ -78,18 +81,22 @@ public class Friends extends Activity implements OnClickListener
             {
                 Toast.makeText(getApplicationContext(), "ERROR Please enter First Name",
                         Toast.LENGTH_LONG).show();
-               // showMessage("Error", "Please enter First Name");
+
                 return;
             }
             Cursor c=db.rawQuery("SELECT * FROM student WHERE FName='"+ editFName.getText()+"'", null);
             if(c.moveToFirst())
             {
-                db.execSQL("DELETE FROM student WHERE FName='"+ editFName.getText()+"'");
-                showMessage("Success", "Record Deleted");
+                db.execSQL("DELETE FROM student WHERE FName='" + editFName.getText() + "'");
+
+                Toast.makeText(getApplicationContext(), "Friend has been DELETED!",
+                        Toast.LENGTH_LONG).show();
             }
             else
             {
-                showMessage("Error", "Invalid FName");
+                Toast.makeText(getApplicationContext(), "Invalid First Name!",
+                        Toast.LENGTH_LONG).show();
+
             }
             clearText();
         }
@@ -97,19 +104,27 @@ public class Friends extends Activity implements OnClickListener
         {
             if(editFName.getText().toString().trim().length()==0)
             {
-                showMessage("Error", "Please enter First Name");
+                Toast.makeText(getApplicationContext(), "Please Enter First Name!",
+                        Toast.LENGTH_LONG).show();
+
                 return;
             }
             Cursor c=db.rawQuery("SELECT * FROM student WHERE FName='"+ editFName.getText()+"'", null);
             if(c.moveToFirst())
             {
-                db.execSQL("UPDATE student SET name='"+ editLName.getText()+"',marks='"+ editPhone.getText()+
-                        "' WHERE FName='"+ editFName.getText()+"'");
-                showMessage("Success", "Record Modified");
+                db.execSQL("UPDATE student SET name='" + editLName.getText() + "',marks='" + editPhone.getText() +
+                        "' WHERE FName='" + editFName.getText() + "'");
+
+                Toast.makeText(getApplicationContext(), "Friend has been Modified!",
+                        Toast.LENGTH_LONG).show();
+
+
             }
             else
             {
-                showMessage("Error", "Invalid FName");
+                Toast.makeText(getApplicationContext(), "Invalid Name!",
+                        Toast.LENGTH_LONG).show();
+
             }
             clearText();
         }
@@ -117,7 +132,10 @@ public class Friends extends Activity implements OnClickListener
         {
             if(editFName.getText().toString().trim().length()==0)
             {
-                showMessage("Error", "Please enter First Name");
+
+                Toast.makeText(getApplicationContext(), "Please enter First Name!",
+                        Toast.LENGTH_LONG).show();
+
                 return;
             }
             Cursor c=db.rawQuery("SELECT * FROM student WHERE FName='"+ editFName.getText()+"'", null);
@@ -128,7 +146,8 @@ public class Friends extends Activity implements OnClickListener
             }
             else
             {
-                showMessage("Error", "Invalid First Name");
+                Toast.makeText(getApplicationContext(), "Invalid Name!",
+                        Toast.LENGTH_LONG).show();
                 clearText();
             }
         }
@@ -137,7 +156,9 @@ public class Friends extends Activity implements OnClickListener
             Cursor c=db.rawQuery("SELECT * FROM student", null);
             if(c.getCount()==0)
             {
-                showMessage("Error", "No records found");
+                Toast.makeText(getApplicationContext(), "INo Records Found!",
+                        Toast.LENGTH_LONG).show();
+
                 return;
             }
             StringBuffer buffer=new StringBuffer();
@@ -147,11 +168,11 @@ public class Friends extends Activity implements OnClickListener
                 buffer.append("Name: " + c.getString(1) + "\n");
                 buffer.append("Marks: "+c.getString(2)+"\n\n");
             }
-            showMessage("Student Details", buffer.toString());
+            Message("Student Details", buffer.toString());
         }
 
     }
-    public void showMessage(String title,String message)
+    public void Message(String title,String message)
     {
         Builder builder=new Builder(this);
         builder.setCancelable(true);
