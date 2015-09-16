@@ -27,6 +27,7 @@ public class Friends extends Activity implements OnClickListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elmain);
+
         //Friends text input
         editFName =(EditText)findViewById(R.id.editFName);
         editLName =(EditText)findViewById(R.id.editName);
@@ -52,7 +53,7 @@ public class Friends extends Activity implements OnClickListener
         
         //Database
         db=openOrCreateDatabase("FriendDB", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS friend (FName VARCHAR,name VARCHAR,marks VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS friend (FName VARCHAR,name VARCHAR,marks VARCHAR, CONSTRAINT fkey PRIMARY KEY (FName, name));");
     }
     public void onClick(View view)
     {
@@ -68,18 +69,30 @@ public class Friends extends Activity implements OnClickListener
 
                 return;
             }
+            //following commented out code is for the checking of already friends
+
+               /*
+           Cursor c=db.rawQuery("SELECT * FROM friend WHERE FName='"+ editFName.getText()+"LName='"+ editLName.getText()+"''", null);
+          if(c.moveToFirst()) {
+            db.execSQL("UPDATE friend SET name='" + editLName.getText() + "',marks='" + editPhone.getText() +
+                        "' WHERE FName='" + editFName.getText() + "'");
+
+                Toast.makeText(getApplicationContext(), "Friend has been Modified!",
+                        Toast.LENGTH_LONG).show();
+                return;
+
+            }else { */
 
 
-           // if()
+                db.execSQL("INSERT INTO friend VALUES('" + editFName.getText() + "','" + editLName.getText() +
+                        "','" + editPhone.getText() + "');");
 
-            db.execSQL("INSERT INTO friend VALUES('" + editFName.getText() + "','" + editLName.getText() +
-                    "','" + editPhone.getText() + "');");
-
-            Toast.makeText(getApplicationContext(), "Friend has been added!",
-                    Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Friend has been added!",
+                        Toast.LENGTH_LONG).show();
 
 
-            clearText();
+                clearText();
+            //}
         }
         if(view==btnDelete)
         {
@@ -162,11 +175,12 @@ public class Friends extends Activity implements OnClickListener
             Cursor c=db.rawQuery("SELECT * FROM friend", null);
             if(c.getCount()==0)
             {
-                Toast.makeText(getApplicationContext(), "INo Records Found!",
+                Toast.makeText(getApplicationContext(), "No Records Found!",
                         Toast.LENGTH_LONG).show();
 
                 return;
             }
+
             StringBuffer buffer=new StringBuffer();
             while(c.moveToNext())
             {
