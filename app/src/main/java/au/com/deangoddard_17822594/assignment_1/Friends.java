@@ -2,6 +2,7 @@ package au.com.deangoddard_17822594.assignment_1;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 public class Friends extends Activity implements OnClickListener
 {
     EditText editFName, editLName, editPhone;
-    Button btnAdd,btnDelete,btnModify,btnView,btnViewAll;
+    Button btnAdd,btnDelete,btnModify,btnView,btnViewAll,homeBtn;
     SQLiteDatabase db;
 
 
@@ -34,11 +35,12 @@ public class Friends extends Activity implements OnClickListener
         
         //Buttons
         
-        btnAdd=(Button)findViewById(R.id.btnAdd);
-        btnDelete=(Button)findViewById(R.id.btnDelete);
-        btnModify=(Button)findViewById(R.id.btnModify);
-        btnView=(Button)findViewById(R.id.btnView);
+        btnAdd=(Button)findViewById(R.id.AddBut);
+        btnDelete=(Button)findViewById(R.id.DelBut);
+        btnModify=(Button)findViewById(R.id.EditBut);
+        btnView=(Button)findViewById(R.id.ViewBut);
         btnViewAll=(Button)findViewById(R.id.btnViewAll);
+        homeBtn=(Button)findViewById(R.id.homebutton);
 
         //Listeners
         btnAdd.setOnClickListener(this);
@@ -46,11 +48,11 @@ public class Friends extends Activity implements OnClickListener
         btnModify.setOnClickListener(this);
         btnView.setOnClickListener(this);
         btnViewAll.setOnClickListener(this);
-
+        homeBtn.setOnClickListener(this);
         
         //Database
-        db=openOrCreateDatabase("StudentDB", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS student(FName VARCHAR,name VARCHAR,marks VARCHAR);");
+        db=openOrCreateDatabase("FriendDB", Context.MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS friend (FName VARCHAR,name VARCHAR,marks VARCHAR);");
     }
     public void onClick(View view)
     {
@@ -66,7 +68,11 @@ public class Friends extends Activity implements OnClickListener
 
                 return;
             }
-            db.execSQL("INSERT INTO student VALUES('" + editFName.getText() + "','" + editLName.getText() +
+
+
+           // if()
+
+            db.execSQL("INSERT INTO friend VALUES('" + editFName.getText() + "','" + editLName.getText() +
                     "','" + editPhone.getText() + "');");
 
             Toast.makeText(getApplicationContext(), "Friend has been added!",
@@ -84,10 +90,10 @@ public class Friends extends Activity implements OnClickListener
 
                 return;
             }
-            Cursor c=db.rawQuery("SELECT * FROM student WHERE FName='"+ editFName.getText()+"'", null);
+            Cursor c=db.rawQuery("SELECT * FROM friend WHERE FName='"+ editFName.getText()+"'", null);
             if(c.moveToFirst())
             {
-                db.execSQL("DELETE FROM student WHERE FName='" + editFName.getText() + "'");
+                db.execSQL("DELETE FROM friend WHERE FName='" + editFName.getText() + "'");
 
                 Toast.makeText(getApplicationContext(), "Friend has been DELETED!",
                         Toast.LENGTH_LONG).show();
@@ -109,10 +115,10 @@ public class Friends extends Activity implements OnClickListener
 
                 return;
             }
-            Cursor c=db.rawQuery("SELECT * FROM student WHERE FName='"+ editFName.getText()+"'", null);
+            Cursor c=db.rawQuery("SELECT * FROM friend WHERE FName='"+ editFName.getText()+"'", null);
             if(c.moveToFirst())
             {
-                db.execSQL("UPDATE student SET name='" + editLName.getText() + "',marks='" + editPhone.getText() +
+                db.execSQL("UPDATE friend SET name='" + editLName.getText() + "',marks='" + editPhone.getText() +
                         "' WHERE FName='" + editFName.getText() + "'");
 
                 Toast.makeText(getApplicationContext(), "Friend has been Modified!",
@@ -138,7 +144,7 @@ public class Friends extends Activity implements OnClickListener
 
                 return;
             }
-            Cursor c=db.rawQuery("SELECT * FROM student WHERE FName='"+ editFName.getText()+"'", null);
+            Cursor c=db.rawQuery("SELECT * FROM friend WHERE FName='"+ editFName.getText()+"'", null);
             if(c.moveToFirst())
             {
                 editLName.setText(c.getString(1));
@@ -153,7 +159,7 @@ public class Friends extends Activity implements OnClickListener
         }
         if(view==btnViewAll)
         {
-            Cursor c=db.rawQuery("SELECT * FROM student", null);
+            Cursor c=db.rawQuery("SELECT * FROM friend", null);
             if(c.getCount()==0)
             {
                 Toast.makeText(getApplicationContext(), "INo Records Found!",
@@ -164,11 +170,17 @@ public class Friends extends Activity implements OnClickListener
             StringBuffer buffer=new StringBuffer();
             while(c.moveToNext())
             {
-                buffer.append("FName: "+c.getString(0)+"\n");
-                buffer.append("Name: " + c.getString(1) + "\n");
-                buffer.append("Marks: "+c.getString(2)+"\n\n");
+                buffer.append("First Name: "+c.getString(0)+"\n");
+                buffer.append("Last Name: " + c.getString(1) + "\n");
+                buffer.append("Phone Number: "+c.getString(2)+"\n\n");
             }
-            Message("Student Details", buffer.toString());
+            Message("Friend Details", buffer.toString());
+        }
+        if(view==homeBtn)
+        {
+
+            startActivity(new Intent(Friends.this, MainActivity.class));
+
         }
 
     }

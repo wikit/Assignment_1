@@ -7,122 +7,118 @@
 	android:paddingBottom="@dimen/activity_vertical_margin"
 	tools:context="au.com.deangoddard_17822594.assignment_1.Freind">
 
-	<GridLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:backgroundTint="#223242"
+        android:backgroundTintMode="add"
+        android:clickable="false"
+        android:layout_alignParentEnd="true">
 
-		<TextView android:text="@string/title"
-                android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                android:id="@+id/textView"
-			android:layout_row="0"
-			android:layout_column="0" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DelBut"
+            android:text="@string/Delbut"
+            android:layout_row="0"
+            android:layout_column="0"
+            />
 
-		<TextView android:text="@string/firstName"
-                android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/editFName"
-                android:layout_alignBottom="@+id/editFName"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/textView4"
-			android:layout_row="0"
-			android:layout_column="1" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Addbut"
+            android:id="@+id/AddBut"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="fill_horizontal|center_horizontal"/>
 
-		<EditText android:id="@+id/editPhoneNo"
-                      android:inputType="number"
-                android:layout_width="150dp"
-                      android:layout_height="40dp"
-                android:layout_alignTop="@+id/btnAdd"
-                android:layout_toEndOf="@+id/textView"
-			android:layout_row="0"
-			android:layout_column="4" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Editbut"
+            android:id="@+id/EditBut"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_gravity="fill_horizontal"/>
 
-		<Button	  android:id="@+id/btnAdd"
-                      android:text="@string/add"
-                android:layout_width="100dp"
-                      android:layout_height="40dp"
-                android:layout_below="@+id/editFName"
-                android:layout_toEndOf="@+id/btnDelete"
-                android:layout_marginTop="30dp"
-			android:layout_row="0"
-			android:layout_column="5" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Viewbut"
+            android:id="@+id/ViewBut"
+            android:layout_row="1"
+            android:layout_column="0"
+            />
 
-		<Button	  android:id="@+id/btnDelete"
-                      android:text="@string/delete"
-                android:layout_width="100dp"
-                      android:layout_height="40dp"
-                android:layout_below="@+id/btnModify"
-                android:layout_toEndOf="@+id/editFName"
-			android:layout_row="0"
-			android:layout_column="6" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Home"
+            android:id="@+id/homebutton"
+            android:layout_row="1"
+            android:layout_column="1"/>
 
-		<Button   android:id="@+id/btnModify"
-                      android:text="@string/modify"
-                android:layout_width="100dp"
-                      android:layout_height="40dp"
-                android:layout_above="@+id/btnView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="36dp"
-			android:layout_row="0"
-			android:layout_column="7" />
+        <Button
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
+            android:text="@string/ViewAllBut"
+            android:id="@+id/btnViewAll"
+            android:layout_row="1"
+            android:layout_column="2"/>
+    </GridLayout>
 
-		<Button   android:id="@+id/btnView"
-                      android:text="@string/view"
-                android:layout_width="100dp"
-                      android:layout_height="40dp"
-                android:layout_alignBaseline="@+id/btnViewAll"
-                android:layout_alignBottom="@+id/btnViewAll"
-                android:layout_alignParentStart="true"
-			android:layout_row="0"
-			android:layout_column="8" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fname"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"/>
 
-		<Button   android:id="@+id/btnViewAll"
-                      android:text="@string/view_all"
-                android:layout_width="100dp"
-                      android:layout_height="40dp"
-                android:layout_marginTop="158dp"
-                android:layout_below="@+id/btnAdd"
-                android:layout_alignParentStart="true"
-			android:layout_row="0"
-			android:layout_column="9" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editFName"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:inputType="text"/>
 
-		<TextView android:text="@string/lastName"
-                android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                android:id="@+id/textView3"
-                android:layout_alignTop="@+id/editName"
-                android:layout_alignParentStart="true"
-			android:layout_row="1"
-			android:layout_column="1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Phone"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/editFName"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"/>
 
-		<EditText android:id="@+id/editFName"
-                      android:inputType="number"
-                android:layout_width="150dp"
-                      android:layout_height="40dp"
-                android:layout_below="@+id/textView"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="23dp"
-			android:layout_row="1"
-			android:layout_column="2" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPhoneNo"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:inputType="phone"/>
 
-		<TextView android:text="@string/phone"
-                android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/editFName"
-                android:layout_alignBottom="@+id/editFName"
-                android:layout_alignEnd="@+id/btnView"
-                android:id="@+id/textView2"
-			android:layout_row="4"
-			android:layout_column="1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/editPhoneNo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"/>
 
-		<EditText android:id="@+id/editName"
-                      android:inputType="text"
-                android:layout_width="150dp"
-                      android:layout_height="40dp"
-                android:layout_above="@+id/btnModify"
-                android:layout_alignParentStart="true"
-			android:layout_row="5"
-			android:layout_column="1" />
-	</GridLayout>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editName"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:inputType="textCapCharacters"/>
 
 </RelativeLayout>

@@ -47,5 +47,23 @@
 
     <string name="view_all">View All</string>
 
-    <string name="show_info">Show Information</string>
+
+    <string name="Viewbut">View</string>
+
+    <string name="Editbut">Edit</string>
+
+    <string name="Addbut">Add</string>
+
+    <string name="Delbut">Delete</string>
+
+    <string name="ViewAllBut">View All</string>
+
+    <string name="fname">First Name</string>
+
+    <string name="Lname">Last Name</string>
+
+    <string name="Phone">Phone Number</string>
+
+    <string name="Home">Home</string>
+
 </resources>
