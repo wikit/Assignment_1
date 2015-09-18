@@ -118,6 +118,7 @@ public class Friends extends Activity implements OnClickListener
 
 
             clearText();
+
             //}
         }
         if(view==btnDelete)
@@ -265,7 +266,7 @@ public class Friends extends Activity implements OnClickListener
         editLName.setText("");
         editAge.setText("");
         editAdd.setText("");
-
+        selectedRadioButton.setChecked(false);
         editFName.requestFocus();
 
     }
@@ -276,7 +277,7 @@ public class Friends extends Activity implements OnClickListener
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.sexGroup);
         int selectedId = radioGroup.getCheckedRadioButtonId();
 
-        CharSequence radioButtonText = null;
+        CharSequence radioButtonText;
         if (selectedId != -1) {
 
             selectedRadioButton = (RadioButton) findViewById(selectedId);

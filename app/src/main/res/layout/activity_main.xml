@@ -22,10 +22,10 @@
             android:textAlignment="gravity" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/event"
-            android:id="@+id/button2"
+            android:text="@string/todo"
+            android:id="@+id/Todo"
             android:layout_row="8"
             android:layout_column="0" />
 

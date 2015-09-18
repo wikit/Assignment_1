@@ -28,6 +28,11 @@
             android:name=".Gallery"
             android:label="@string/title_activity_gallery" >
         </activity>
+        <activity
+            android:name=".Todo"
+            android:label="@string/title_activity_todo" >
+        </activity>
+
     </application>
 
 </manifest>
