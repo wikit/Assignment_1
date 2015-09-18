@@ -17,7 +17,8 @@
         android:backgroundTint="#223242"
         android:backgroundTintMode="add"
         android:clickable="false"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:id="@+id/gridLayout">
 
         <Button
             android:layout_width="wrap_content"
@@ -90,16 +91,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Phone"
+        android:text="@string/age"
         android:id="@+id/textView2"
-        android:layout_below="@+id/editFName"
+        android:layout_below="@+id/editName"
         android:layout_alignParentStart="true"
         android:layout_marginTop="25dp"/>
 
     <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editPhoneNo"
+        android:id="@+id/editAge"
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true"
         android:inputType="phone"/>
@@ -107,9 +108,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/last"
         android:id="@+id/textView3"
-        android:layout_below="@+id/editPhoneNo"
+        android:layout_below="@+id/editFName"
         android:layout_alignParentStart="true"
         android:layout_marginTop="25dp"/>
 
@@ -120,5 +121,63 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
         android:inputType="textCapCharacters"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sex"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editAge"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/address"
+        android:id="@+id/textView5"
+        android:layout_alignTop="@+id/editAddress"
+        android:layout_alignParentStart="true"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView4"
+        android:id="@+id/sexGroup">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:id="@+id/radioButMale"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            android:id="@+id/radioButFemale"
+            android:checked="false"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editgender"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"
+            android:inputType="text"/>
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editAddress"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/gridLayout"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/sexGroup"/>
 
 </RelativeLayout>

@@ -12,14 +12,18 @@ import android.widget.Button;
 
 
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Friends extends Activity implements OnClickListener
 {
-    EditText editFName, editLName, editPhone;
+    EditText editFName, editLName, editAge, editAdd, editGender;
     Button btnAdd,btnDelete,btnModify,btnView,btnViewAll,homeBtn;
     SQLiteDatabase db;
 
+    RadioButton selectedRadioButton;
 
 
     @Override
@@ -31,17 +35,19 @@ public class Friends extends Activity implements OnClickListener
         //Friends text input
         editFName =(EditText)findViewById(R.id.editFName);
         editLName =(EditText)findViewById(R.id.editName);
-        editPhone =(EditText)findViewById(R.id.editPhoneNo);
+        editAge =(EditText)findViewById(R.id.editAge);
+        editAdd =(EditText)findViewById(R.id.editAddress);
+       editGender=(EditText)findViewById(R.id.editgender);
         
         
         //Buttons
-        
         btnAdd=(Button)findViewById(R.id.AddBut);
         btnDelete=(Button)findViewById(R.id.DelBut);
         btnModify=(Button)findViewById(R.id.EditBut);
         btnView=(Button)findViewById(R.id.ViewBut);
         btnViewAll=(Button)findViewById(R.id.btnViewAll);
         homeBtn=(Button)findViewById(R.id.homebutton);
+
 
         //Listeners
         btnAdd.setOnClickListener(this);
@@ -50,19 +56,39 @@ public class Friends extends Activity implements OnClickListener
         btnView.setOnClickListener(this);
         btnViewAll.setOnClickListener(this);
         homeBtn.setOnClickListener(this);
-        
+
         //Database
-        db=openOrCreateDatabase("FriendDB", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS friend (FName VARCHAR,name VARCHAR,marks VARCHAR, CONSTRAINT fkey PRIMARY KEY (FName, name));");
+        db=openOrCreateDatabase("Friend1DB", Context.MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS friend (FName VARCHAR, name VARCHAR, age VARCHAR, gender VARCHAR, address VARCHAR, CONSTRAINT fkey PRIMARY KEY (FName, name));");
+
+
+
     }
     public void onClick(View view)
     {
-        if(view==btnAdd)
-        {
-            if(editFName.getText().toString().length()==0||
-                    editLName.getText().toString().length()==0||
-                    editPhone.getText().toString().length()==0)
-            {
+
+
+        if(view==btnAdd) {
+
+            genderselect();
+
+            /*RadioGroup radioGroup = (RadioGroup) findViewById(R.id.sexGroup);
+            int selectedId = radioGroup.getCheckedRadioButtonId();
+
+            CharSequence radioButtonText = null;
+            if (selectedId != -1) {
+
+                selectedRadioButton = (RadioButton) findViewById(selectedId);
+
+
+                radioButtonText = selectedRadioButton.getText();
+                editGender.setText(radioButtonText);
+            }*/
+
+            if (editFName.getText().toString().length() == 0 ||
+                    editLName.getText().toString().length() == 0 ||
+                    editAge.getText().toString().length() == 0 ||
+                    editAdd.getText().toString().length() == 0) {
 
                 Toast.makeText(getApplicationContext(), "Missing Details!",
                         Toast.LENGTH_LONG).show();
@@ -74,7 +100,7 @@ public class Friends extends Activity implements OnClickListener
                /*
            Cursor c=db.rawQuery("SELECT * FROM friend WHERE FName='"+ editFName.getText()+"LName='"+ editLName.getText()+"''", null);
           if(c.moveToFirst()) {
-            db.execSQL("UPDATE friend SET name='" + editLName.getText() + "',marks='" + editPhone.getText() +
+            db.execSQL("UPDATE friend SET name='" + editLName.getText() + "',age='" + editAge.getText() +
                         "' WHERE FName='" + editFName.getText() + "'");
 
                 Toast.makeText(getApplicationContext(), "Friend has been Modified!",
@@ -82,16 +108,16 @@ public class Friends extends Activity implements OnClickListener
                 return;
 
             }else { */
+            // RadioButtonClicked();
+
+            db.execSQL("INSERT INTO friend VALUES('" + editFName.getText() + "','" + editLName.getText() +
+                    "','" + editAge.getText() + "','" + editGender.getText() + "','" + editAdd.getText() + "');");
+
+            Toast.makeText(getApplicationContext(), "Friend has been added!",
+                    Toast.LENGTH_LONG).show();
 
 
-                db.execSQL("INSERT INTO friend VALUES('" + editFName.getText() + "','" + editLName.getText() +
-                        "','" + editPhone.getText() + "');");
-
-                Toast.makeText(getApplicationContext(), "Friend has been added!",
-                        Toast.LENGTH_LONG).show();
-
-
-                clearText();
+            clearText();
             //}
         }
         if(view==btnDelete)
@@ -121,6 +147,9 @@ public class Friends extends Activity implements OnClickListener
         }
         if(view==btnModify)
         {
+
+
+            genderselect();
             if(editFName.getText().toString().trim().length()==0)
             {
                 Toast.makeText(getApplicationContext(), "Please Enter First Name!",
@@ -131,7 +160,7 @@ public class Friends extends Activity implements OnClickListener
             Cursor c=db.rawQuery("SELECT * FROM friend WHERE FName='"+ editFName.getText()+"'", null);
             if(c.moveToFirst())
             {
-                db.execSQL("UPDATE friend SET name='" + editLName.getText() + "',marks='" + editPhone.getText() +
+                db.execSQL("UPDATE friend SET name='" + editLName.getText() + "',age='" + editAge.getText() + "',gender='" + editGender.getText() + "',address='" + editAdd.getText() +
                         "' WHERE FName='" + editFName.getText() + "'");
 
                 Toast.makeText(getApplicationContext(), "Friend has been Modified!",
@@ -161,7 +190,7 @@ public class Friends extends Activity implements OnClickListener
             if(c.moveToFirst())
             {
                 editLName.setText(c.getString(1));
-                editPhone.setText(c.getString(2));
+                editAge.setText(c.getString(2));
             }
             else
             {
@@ -186,7 +215,10 @@ public class Friends extends Activity implements OnClickListener
             {
                 buffer.append("First Name: "+c.getString(0)+"\n");
                 buffer.append("Last Name: " + c.getString(1) + "\n");
-                buffer.append("Phone Number: "+c.getString(2)+"\n\n");
+                buffer.append("Age: "+c.getString(2));
+                buffer.append("  Gender: "+c.getString(3)+"\n");
+                buffer.append("Address: "+c.getString(4)+"\n\n");
+
             }
             Message("Friend Details", buffer.toString());
         }
@@ -198,6 +230,27 @@ public class Friends extends Activity implements OnClickListener
         }
 
     }
+/*
+    private void RadioButtonClicked() {
+
+
+//This variable will store whether the user was male or female
+      //  String Gender="";
+// Ch
+            if(R.id.radioButFemale
+                (checked))
+                    Gender = "female";
+
+                break;
+            case R.id.radioButMale:
+                if (checked)
+                    Gender = "male";
+                break;
+        }
+    }
+*/
+
+
     public void Message(String title,String message)
     {
         Builder builder=new Builder(this);
@@ -210,7 +263,57 @@ public class Friends extends Activity implements OnClickListener
     {
         editFName.setText("");
         editLName.setText("");
-        editPhone.setText("");
+        editAge.setText("");
+        editAdd.setText("");
+
         editFName.requestFocus();
+
     }
+
+    public void genderselect(){
+
+
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.sexGroup);
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+
+        CharSequence radioButtonText = null;
+        if (selectedId != -1) {
+
+            selectedRadioButton = (RadioButton) findViewById(selectedId);
+
+
+            radioButtonText = selectedRadioButton.getText();
+            editGender.setText(radioButtonText);
+        }
+
+
+
+    }
+
+   /* public void popListview(){
+
+        Cursor c=db.rawQuery("SELECT * FROM friend", null);
+        if(c.getCount()==0)
+        {
+            Toast.makeText(getApplicationContext(), "No Records Found!",
+                    Toast.LENGTH_LONG).show();
+
+            return;
+        }
+
+
+        else {
+
+
+
+        }
+
+
+
+
+
+
+
+
+    }*/
 }
