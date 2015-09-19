@@ -11,34 +11,55 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnAddto" />
+        android:layout_above="@+id/editText"
+        android:layout_toStartOf="@+id/btnAddto"/>
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etNewItem"
-        android:layout_alignTop="@+id/btnAddto"
-        android:hint="Enter a new item"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/btnEditTodo"
-        android:layout_alignParentBottom="true" />
+        android:hint="@string/todoitem"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/addtodo"
         android:id="@+id/btnAddto"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/editTodo"
         android:id="@+id/btnEditTodo"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/btnAddto"/>
+        android:layout_below="@+id/btnAddto"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button2"
+        android:layout_below="@+id/btnEditTodo"
+        android:layout_alignStart="@+id/btnAddto"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button3"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/button2"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_above="@+id/etNewItem"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

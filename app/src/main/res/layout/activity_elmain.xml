@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/DelBut"
             android:text="@string/Delbut"
+            android:background="@drawable/borderdel"
             android:layout_row="0"
             android:layout_column="0"
             />
@@ -36,6 +37,7 @@
             android:id="@+id/AddBut"
             android:layout_row="0"
             android:layout_column="1"
+            android:background="@drawable/borderadd"
             android:layout_gravity="fill_horizontal|center_horizontal"/>
 
         <Button
@@ -45,6 +47,7 @@
             android:id="@+id/EditBut"
             android:layout_row="0"
             android:layout_column="2"
+            android:background="@drawable/borderedit"
             android:layout_gravity="fill_horizontal"/>
 
         <Button
@@ -179,5 +182,23 @@
         android:layout_above="@+id/gridLayout"
         android:layout_marginBottom="25dp"
         android:layout_below="@+id/sexGroup"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/freindsInst"
+        android:id="@+id/textView6"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_toEndOf="@+id/sexGroup"
+        android:layout_marginStart="31dp"
+        android:clickable="false"
+        android:backgroundTint="#69393a0f"
+        android:ellipsize="middle"
+        android:textSize="20dp"
+        android:background="@drawable/border"
+        android:shadowColor="#69393a0f"
+        android:singleLine="false"
+        android:layout_marginLeft="25dp"
+        android:padding="25dp"/>
 
 </RelativeLayout>

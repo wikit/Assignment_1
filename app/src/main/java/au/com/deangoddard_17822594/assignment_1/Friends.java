@@ -192,6 +192,11 @@ public class Friends extends Activity implements OnClickListener
             {
                 editLName.setText(c.getString(1));
                 editAge.setText(c.getString(2));
+                editGender.setText(c.getString(3));
+                editAdd.setText(c.getString(4));
+
+               // if(editGender.getText() == "Female")
+
             }
             else
             {
