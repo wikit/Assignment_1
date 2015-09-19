@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/editText"
+        android:layout_above="@+id/tododesc"
         android:layout_toStartOf="@+id/btnAddto"/>
 
     <EditText
@@ -58,8 +58,9 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/tododesc"
         android:layout_above="@+id/etNewItem"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:inputType="text"/>
 
 </RelativeLayout>

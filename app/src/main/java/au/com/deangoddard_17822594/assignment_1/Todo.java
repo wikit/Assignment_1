@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class Todo extends Activity implements OnClickListener{
 
 
-    //EditText editFName, editLName, editAge, editAdd, editGender;
+    EditText todoDesc, editLName, editAge, editAdd, editGender;
     Button btnAddto,btnDelete,btnModify,btnView,btnViewAll,homeBtn;
     SQLiteDatabase dbtodo;
     @Override
@@ -79,8 +79,8 @@ public class Todo extends Activity implements OnClickListener{
           //  }
 
 
-          //  dbtodo.execSQL("INSERT INTO todo VALUES('" + editFName.getText() + "','" + editLName.getText() +
-               //     "','" + editAge.getText() + "','" + editGender.getText() + "','" + editAdd.getText() + "');");
+            dbtodo.execSQL("INSERT INTO todo VALUES('" + todoDesc.getText() + "','" + editLName.getText() +
+                   "','" + editAge.getText() + "','" + editGender.getText() + "','" + editAdd.getText() + "');");
 
             Toast.makeText(getApplicationContext(), "Task has been added!",
                     Toast.LENGTH_LONG).show();
