@@ -13,7 +13,7 @@
 
     <string name="event">New Button</string>
 
-    <string name="other">New Button</string>
+    <string name="other">Gallery</string>
 
     <string name="title_activity_friends">Friends</string>
 
@@ -78,5 +78,6 @@
     <string name="todoitem">Enter a new item</string>
     <string name="freindsInst"> To add friend please fill in details
     then click add button. \n \n To edit enter first name then edit the fields and press edit. \n \n To delete a record enter the first name and then press delete.</string>
+    <string name="TitleP">Personal Organiser</string>
 
 </resources>

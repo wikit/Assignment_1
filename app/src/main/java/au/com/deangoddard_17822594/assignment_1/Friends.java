@@ -197,6 +197,7 @@ public class Friends extends Activity implements OnClickListener
 
                // if(editGender.getText() == "Female")
 
+
             }
             else
             {
