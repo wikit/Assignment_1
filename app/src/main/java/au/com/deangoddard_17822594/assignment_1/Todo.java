@@ -1,13 +1,13 @@
 package au.com.deangoddard_17822594.assignment_1;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,14 +20,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 public class Todo extends Activity implements OnClickListener{
 
 
-    EditText todoDesc, editLName, editAge, editAdd, editGender;
-    Button btnAddto,btnDelete,btnModify,btnView,btnViewAll,homeBtn;
-    SQLiteDatabase dbtodo;
+    EditText todoDesc, local, status ;
+    Button btnAddto,btnDelete,btnEdit,btnVAll,homeBtnTodo;
+    SQLiteDatabase dbtodo ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +38,25 @@ public class Todo extends Activity implements OnClickListener{
         dbtodo = openOrCreateDatabase("todoDB", Context.MODE_PRIVATE, null);
         dbtodo.execSQL("CREATE TABLE IF NOT EXISTS todo (name VARCHAR, location VARCHAR, status VARCHAR, CONSTRAINT pkey PRIMARY KEY (name));");
 
+        local = (EditText) findViewById(R.id.editLocation);
+        status = (EditText) findViewById(R.id.editStatus);
+        todoDesc = (EditText) findViewById(R.id.editdesc);
+
         //Buttons
         btnAddto=(Button)findViewById(R.id.btnAddto);
-        //btnDelete=(Button)findViewById(R.id.DelBut);
-        //btnModify=(Button)findViewById(R.id.EditBut);
-        //btnView=(Button)findViewById(R.id.ViewBut);
-        //btnViewAll=(Button)findViewById(R.id.btnViewAll);
-        //homeBtn=(Button)findViewById(R.id.homebutton);
+        btnEdit=(Button)findViewById(R.id.btnEditTodo);
+        btnDelete=(Button)findViewById(R.id.btnDelete);
+        btnVAll=(Button)findViewById(R.id.btnVAll);
+        homeBtnTodo=(Button)findViewById(R.id.homeBtnTodo);
 
 
         //Listeners
         btnAddto.setOnClickListener(this);
-        //btnDelete.setOnClickListener(this);
-        //btnModify.setOnClickListener(this);
-        //btnView.setOnClickListener(this);
-        //btnViewAll.setOnClickListener(this);
-        //homeBtn.setOnClickListener(this);
+        btnDelete.setOnClickListener(this);
+        btnEdit.setOnClickListener(this);
+        btnVAll.setOnClickListener(this);
+        homeBtnTodo.setOnClickListener(this);
+
 
 
     }
@@ -67,33 +70,86 @@ public class Todo extends Activity implements OnClickListener{
 
 
 
-           // if (editFName.getText().toString().length() == 0 ||
-                 //   editLName.getText().toString().length() == 0 ||
-                //    editAge.getText().toString().length() == 0 ||
-                //    editAdd.getText().toString().length() == 0) {
-
-               // Toast.makeText(getApplicationContext(), "Missing Details!",
-                    //    Toast.LENGTH_LONG).show();
-
-              //  return;
-          //  }
+           //todo code needs to be added into the next couple of lines
 
 
-            dbtodo.execSQL("INSERT INTO todo VALUES('" + todoDesc.getText() + "','" + editLName.getText() +
-                   "','" + editAge.getText() + "','" + editGender.getText() + "','" + editAdd.getText() + "');");
+            dbtodo.execSQL("INSERT INTO todo VALUES('" + todoDesc.getText() + "','" + local.getText() +
+                   "','" + status.getText() + "');");
 
             Toast.makeText(getApplicationContext(), "Task has been added!",
                     Toast.LENGTH_LONG).show();
 
+            //}
+
+        }
+        if(view==btnEdit) {
 
 
+
+
+            //todo edit code needs to be added into the next couple of lines
+
+
+            dbtodo.execSQL("INSERT INTO todo VALUES('" + todoDesc.getText() + "','" + local.getText() +
+                    "','" + status.getText() + "');");
+
+            Toast.makeText(getApplicationContext(), "Task has been added!",
+                    Toast.LENGTH_LONG).show();
 
             //}
+
         }
 
+        if(view==btnDelete) {
 
 
 
+
+            //todo del code needs to be added into the next couple of lines
+
+
+            Cursor c=dbtodo.rawQuery("SELECT * FROM todo WHERE name='"+ todoDesc.getText()+"'", null);
+            if(c.moveToFirst())
+            {
+                dbtodo.execSQL("DELETE FROM todo WHERE Name='" + todoDesc.getText() + "'");
+
+                Toast.makeText(getApplicationContext(), "Task has been DELETED!",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            clearText();
+
+        }
+
+        if(view==btnVAll)
+        {
+            Cursor c=dbtodo.rawQuery("SELECT * FROM todo", null);
+            if(c.getCount()==0)
+            {
+                Toast.makeText(getApplicationContext(), "No Records Found!",
+                        Toast.LENGTH_LONG).show();
+
+                return;
+            }
+
+            StringBuffer buffer=new StringBuffer();
+            while(c.moveToNext())
+            {
+                buffer.append("Task Description: "+c.getString(0)+"\n");
+                buffer.append("Location: " + c.getString(1) + "\n");
+                buffer.append("Status: "+c.getString(2)+"\n");
+
+
+            }
+            Message("All Tasks", buffer.toString());
+        }
+
+        if(view==homeBtnTodo)
+        {
+
+            startActivity(new Intent(Todo.this, MainActivity.class));
+
+        }
 
     }
 
@@ -120,4 +176,24 @@ public class Todo extends Activity implements OnClickListener{
     }
 
 
+
+    public void clearText()
+    {
+        todoDesc.setText("");
+        local.setText("");
+        status.setText("");
+
+
+    }
+
+
+    public void Message(String title,String message)
+    {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+    }
 }
+

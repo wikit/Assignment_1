@@ -2,7 +2,8 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".MainActivity">
+                tools:context=".MainActivity"
+    android:id="@+id/todo">
 
     <ListView
         android:layout_width="wrap_content"
@@ -11,16 +12,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/tododesc"
-        android:layout_toStartOf="@+id/btnAddto"/>
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etNewItem"
-        android:hint="@string/todoitem"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_toStartOf="@+id/btnAddto"
+        android:layout_above="@+id/description" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,26 +34,77 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
+        android:text="@string/tododel"
+        android:id="@+id/btnDelete"
         android:layout_below="@+id/btnEditTodo"
         android:layout_alignStart="@+id/btnAddto"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button3"
-        android:layout_below="@+id/button2"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/button2"/>
+        android:text="@string/vall"
+        android:id="@+id/btnVAll"
+        android:layout_below="@+id/btnDelete"
+        android:layout_alignStart="@+id/btnEditTodo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desctodo"
+        android:id="@+id/description"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tododesc"
-        android:layout_above="@+id/etNewItem"
-        android:layout_alignParentEnd="true"
-        android:inputType="text"/>
+        android:id="@+id/editdesc"
+        android:layout_below="@+id/description"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/todoloc"
+        android:layout_below="@+id/editdesc"
+        android:layout_alignParentStart="true"
+        android:text="@string/todoloc" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editLocation"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/todoloc"
+        android:layout_alignParentLeft="true"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/todostat"
+        android:layout_below="@+id/editLocation"
+        android:layout_alignParentStart="true"
+        android:text="@string/todostat" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editStatus"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/todostat"
+        android:layout_alignParentLeft="true"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/todohome"
+        android:id="@+id/homeBtnTodo"
+        android:layout_below="@+id/btnVAll"
+        android:layout_alignStart="@+id/btnVAll" />
 
 </RelativeLayout>

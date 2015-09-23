@@ -137,6 +137,7 @@ public class Friends extends Activity implements OnClickListener
 
                 Toast.makeText(getApplicationContext(), "Friend has been DELETED!",
                         Toast.LENGTH_LONG).show();
+                return;
             }
             else
             {

@@ -66,6 +66,7 @@
     <string name="Home">Home</string>
 
     <string name="last">Last Name</string>
+
     <string name="sex">Sex</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
@@ -79,5 +80,10 @@
     <string name="freindsInst"> To add friend please fill in details
     then click add button. \n \n To edit enter first name then edit the fields and press edit. \n \n To delete a record enter the first name and then press delete.</string>
     <string name="TitleP">Personal Organiser</string>
-
+    <string name="tododel">Delete</string>
+    <string name="vall">View All</string>
+    <string name="desctodo">New Task Description</string>
+    <string name="todoloc">New Task Location</string>
+    <string name="todostat">New Task Status</string>
+    <string name="todohome">Home</string>
 </resources>
